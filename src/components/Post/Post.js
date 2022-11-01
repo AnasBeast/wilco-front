@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	View,
 	Text,
-	Image, Pressable
+	Image, 
+	Pressable
 } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import PropTypes from 'prop-types';
@@ -25,6 +26,9 @@ const PostComponent = ( {
 	showPreviewComments, showOptionsComments, showBackground,
 	onHashtagPress
 } ) => {
+	const [isVisibleComments, setVisibleComments] = useState(false);
+	const handelCommentPress = () => setVisibleComments(!isVisibleComments)
+
 	const privacy = (
 		<Image
 			testID={postPresenter.privacy.testID}
@@ -101,15 +105,15 @@ const PostComponent = ( {
 				numberOfLikes={postPresenter.numberOfLikes}
 				liked={postPresenter.liked}
 				onLikePressed={postPresenter.likeButtonWasPressed}
-				onCommentPressed={commentButtonWasPressed}
+				onCommentPressed={handelCommentPress}
 			/>
 
-			<PreviewComments
+			{isVisibleComments && <PreviewComments
 				postPresenter={postPresenter}
 				renderComment={_renderPreviewComment}
 				showPreviewComments={showPreviewComments}
 				commentButtonWasPressed={commentButtonWasPressed}
-			/>
+			/>}
 		</View>
 	);
 };

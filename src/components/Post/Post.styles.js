@@ -4,7 +4,6 @@ import { palette, fonts } from '../../Theme';
 export const styles = StyleSheet.create( {
 	postContainer: {
 		marginBottom: 24,
-		paddingTop: 16
 	},
 	background: {
 		backgroundColor: palette.grayscale.white
@@ -19,9 +18,7 @@ export const styles = StyleSheet.create( {
 		color: palette.grayscale.black,
 		marginTop: 8
 	},
-	imageContainer: {
-		marginTop: 16
-	},
+	infoContainer: { paddingVertical: 16 },
 	communitiesContainer: {
 		flexDirection: 'row',
 		alignItems: 'flex-start',
@@ -53,5 +50,6 @@ export const styles = StyleSheet.create( {
 	},
 	communityTagItemContainer: {
 		justifyContent: 'center'
-	}
+	},
+	tagText: {marginLeft: 'auto', fontSize: 14, fontWeight: '700'}
 } );

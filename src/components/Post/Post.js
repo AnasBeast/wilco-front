@@ -20,6 +20,7 @@ import PreviewComments from './components/PreviewComments';
 import TextWithMentions from '../TextWithMentions/TextWithMentions';
 import CommunityTags from './components/CommunityTags';
 import Airports from './components/Airports';
+import getContainerHashtagInfo from './helpers/getContainerHashtagInfo'
 
 const PostComponent = ( {
 	testID, postPresenter, commentButtonWasPressed, contentWasPressed,
@@ -27,7 +28,9 @@ const PostComponent = ( {
 	onHashtagPress
 } ) => {
 	const [isVisibleComments, setVisibleComments] = useState(false);
-	const handelCommentPress = () => setVisibleComments(!isVisibleComments)
+	const handelCommentPress = () => setVisibleComments(!isVisibleComments);
+
+	console.log('QQQ postPresenter 1 ', postPresenter);
 
 	const privacy = (
 		<Image
@@ -50,9 +53,14 @@ const PostComponent = ( {
 		</HorizontalPadding>
 	);
 
+	const hashTagInfo = getContainerHashtagInfo(postPresenter.text);
+
 	return (
 		<View testID={testID} style={[ styles.postContainer, showBackground && styles.background ]}>
-			<HorizontalPadding>
+			<HorizontalPadding style={[styles.infoContainer, {backgroundColor: hashTagInfo.background}]}>
+				{!!hashTagInfo.hashTag && (
+					<Text style={styles.tagText}>{hashTagInfo.hashTag}</Text>
+				)}
 				<PostHeaderView
 					testID="headerView-component"
 					pilotName={postPresenter.pilotName}
@@ -86,7 +94,7 @@ const PostComponent = ( {
 			</HorizontalPadding>
 
 			{ postPresenter.hasImages && (
-				<View style={styles.imageContainer}>
+				<View>
 					<ImageCarousel
 						testID="image-carousel"
 						previewSources={postPresenter.imagePreviewSources}

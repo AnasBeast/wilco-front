@@ -38,6 +38,7 @@ export default class PostFlight {
 	}
 
 	static fromJSON( data ) {
+		console.log('PostFlight ', data);
 		return new PostFlight( {
 			id: data.id,
 			from: data.from,

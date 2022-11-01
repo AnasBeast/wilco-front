@@ -16,6 +16,7 @@ export const styles = StyleSheet.create( {
 	fromAndTo: {
 		marginTop: 5,
 		...fonts.bodyFocus,
+		textDecorationLine: 'underline',
 		color: palette.grayscale.black
 	},
 	times: {

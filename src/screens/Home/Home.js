@@ -45,7 +45,8 @@ const Home = ( { testID, route } ) => {
 		} );
 	}, [] );
 
-	const allPostList = () => ( ( homePostListPresenter.showPlaceholder )
+	const allPostList = () => {
+		return ( ( homePostListPresenter.showPlaceholder )
 		? <Placeholder testID="placeholder-home-screen" />
 		: (
 			<View style={styles.postContainer}>
@@ -62,7 +63,7 @@ const Home = ( { testID, route } ) => {
 					postPresenters={homePostListPresenter.postPresenters}
 				/>
 			</View>
-		) );
+		) )};
 
 	const myFeedConditionalPlaceholder = () => ( ( presenter.isFilterApplied )
 		? <Placeholder testID="placeholder-home-screen" />

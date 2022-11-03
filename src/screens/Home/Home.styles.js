@@ -5,7 +5,7 @@ import { palette, fonts } from '../../Theme';
 export const styles = StyleSheet.create( {
 	logo: {
 		height: 40,
-		width: 208,
+		width: 122,
 		marginTop: 12,
 		marginBottom: 8
 	},

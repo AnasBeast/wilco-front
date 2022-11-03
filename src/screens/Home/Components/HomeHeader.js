@@ -45,6 +45,7 @@ const HomeHeader = forwardRef( ( {
 				<View style={styles.headerLeftContainer}>
 					<Pressable onPress={_onLogoPressed}>
 						<Image
+						resizeMode='contain'
 							testID="logo-image"
 							style={styles.logo}
 							source={horizontalLogo}

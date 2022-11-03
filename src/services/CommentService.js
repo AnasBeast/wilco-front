@@ -12,4 +12,14 @@ export default class CommentService extends EntityService {
 	async report( commentId ) {
 		await this.api.post( `1/comments/${commentId}/reports` );
 	}
+
+	async likeComment( commentId ) {
+		console.log('likeComment api')
+		// await this.api.post( `1/comment/${commentId}/like` );
+	}
+
+	async unlikeComment( commentId ) {
+		console.log('unlikeComment api')
+		// await this.api.post( `1/comment/${commentId}/dislike` );
+	}
 }

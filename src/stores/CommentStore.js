@@ -8,4 +8,8 @@ export default class CommentStore extends EntityStore {
 	getCommentsByPilotId( pilotId ) {
 		return this.entities.filter( ( entity ) => entity.pilot.id === pilotId );
 	}
+
+	updateCommentLikes() {
+		console.log('CommentStore ', this, this.entities);
+	}
 }

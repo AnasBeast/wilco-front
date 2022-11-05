@@ -57,7 +57,16 @@ const PostComponent = ({
 
   return (
     <View testID={testID} style={[styles.postContainer, showBackground && styles.background]}>
-      <HorizontalPadding style={[styles.infoContainer, { backgroundColor: hashTagInfo.background }]}>
+      <HorizontalPadding
+        style={[
+          styles.infoContainer,
+          hashTagInfo.background && {
+            shadowColor: hashTagInfo.background,
+            backgroundColor: hashTagInfo.background,
+          },
+          hashTagInfo.background !== '#fff' && styles.hashTagViewStyles,
+        ]}
+      >
         {!!hashTagInfo.hashTag && <Text style={styles.tagText}>{hashTagInfo.hashTag}</Text>}
         <PostHeaderView
           testID="headerView-component"

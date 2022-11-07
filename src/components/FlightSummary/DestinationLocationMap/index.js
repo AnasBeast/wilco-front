@@ -24,7 +24,7 @@ const DestinationLocationMap = ({ longitude, latitude, onClose }) => {
             latitudeDelta: 0.4,
             longitudeDelta: 0.4,
           }}
-        ></MapView>
+        />
       </SafeAreaView>
     </Modal>
   );

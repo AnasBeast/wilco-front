@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -35,11 +35,12 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 24,
   },
+  mapWrapper: {},
   map: {
     flex: 1,
     padding: 25,
     height: '100%',
-    width: '100%',
-    // ...StyleSheet.absoluteFillObject,
+    margin: 25,
+    width: Dimensions.get('screen').width - 50,
   },
 });

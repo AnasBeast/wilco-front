@@ -82,7 +82,7 @@ const PostComponent = ({
 
         <Airports airports={postPresenter.airports} />
 
-        {!!postPresenter.title && (
+        {!!postPresenter.title && ( 
           <Text testID="title-text" style={styles.title} onPress={contentWasPressed}>
             {postPresenter.title}
           </Text>

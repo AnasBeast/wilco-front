@@ -2,7 +2,7 @@ import React, { forwardRef, useEffect, useRef } from 'react';
 import { Image, Pressable, View } from 'react-native';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { filter, horizontalLogo, sliders } from '../../../assets/icons';
+import { search, horizontalLogo, sliders } from '../../../assets/icons';
 import { styles } from '../Home.styles';
 import { HIT_SLOP } from '../../../constants/theme';
 import { Tooltip } from '../../../components/Tooltip';
@@ -54,7 +54,7 @@ const HomeHeader = forwardRef(
           </View>
           <View style={styles.headerRightContainer}>
             <Pressable onPress={_onFilterPressed} hitSlop={HIT_SLOP}>
-              <Image testID="filter-image" style={[styles.rightLogo, styles.filterLogo]} source={filter} />
+              <Image testID="filter-image" style={[styles.rightLogo, styles.filterLogo]} source={search} />
             </Pressable>
             <Pressable onPress={onPreferencesButtonPressed} hitSlop={HIT_SLOP}>
               <Tooltip

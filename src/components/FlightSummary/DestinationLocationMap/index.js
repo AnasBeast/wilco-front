@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, View, Text, SafeAreaView, Pressable, Image } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+
 
 import { styles } from './index.style';
 
@@ -18,6 +19,7 @@ const DestinationLocationMap = ({ longitude, latitude, onClose }) => {
         <MapView
           style={styles.map}
           zoomControlEnabled
+          provider={PROVIDER_GOOGLE}
           region={{
             latitude: 37.78825,
             longitude: -122.4324,

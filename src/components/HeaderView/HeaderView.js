@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import { meatballsMenu, starMyFeed } from '../../assets/icons';
 import { defaultStyle, smallStyle, withoutBodyStyle } from './HeaderView.styles';
 import { Avatar } from '../Avatar';
-
+import { palette } from '../../Theme';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 const HeaderView = ( {
 	testID, pilotName, titleInfo, titleExtraInfo, bodyInfo, bodySecondaryInfo,
 	bodyTertiaryInfo, bodyQuaternaryInfo, optionsOnPress, pilotOnPress, imageSource, variant,
@@ -112,11 +113,16 @@ const HeaderView = ( {
 							testID="right-component-pressable"
 							onPress={rightAction.onPress}
 						>
-							<Image
+							<FontAwesome
+							name='chevron-right'
+							color={palette.grayscale.black}
+							size={23}
+							/>
+							{/* <Image
 								testID="right-component-image"
 								style={styles.rightActionImage}
 								source={rightAction.imageSource}
-							/>
+							/> */}
 						</Pressable>
 					</View>
 				)

@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { fonts, palette } from '../../Theme';
 
-export const styles = StyleSheet.create( {
+export const styles = StyleSheet.create({
 	postBarContainer: {
 		marginTop: 24,
 		marginBottom: 10,
@@ -92,5 +92,46 @@ export const styles = StyleSheet.create( {
 		marginTop: 5
 	},
 	selectedFlightContainer: { marginBottom: 20 },
-	selectedFlightInnerContainer: { flexDirection: 'row', marginLeft: 10 }
-} );
+	selectedFlightInnerContainer: { flexDirection: 'row', marginLeft: 10 },
+	createPostAddButtonContainer: {
+		// width: Dimensions.get('screen').width / 3.8,
+	},
+	createPostAddButton: {
+		width: Dimensions.get('screen').width / 3.8,
+		height: 60,
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 10,
+		backgroundColor: palette.primary.background,
+		shadowOffset: {
+			width: 0,
+			height: 3,
+		},
+		shadowOpacity: 0.29,
+		shadowRadius: 4.65,
+		
+		elevation: 7,
+	},
+	createPostAddButtonTitle:{
+		color:palette.secondary.default,
+		textAlign:'center',
+		marginVertical:10,
+		minHeight:20
+	},
+	tabButtonContainer:{
+		width:'100%',
+		flexDirection:'row',
+		alignItems:'center',
+		justifyContent:'space-between',
+		paddingHorizontal:15
+	},
+	tabButtonInneraligner:{
+		flexDirection:'row',
+		alignItems:'center'
+	},
+	tabButtonTitle:{
+		fontWeight:'bold',
+		paddingLeft:7
+	}
+});
+

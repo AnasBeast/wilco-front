@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { useRef, useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { TITLE, MESSAGE, VISIBILITY } from '../../constants/formFields/postForm';
 import useCreatePostWireframe from '../../wireframes/useCreatePostWireframe';
@@ -22,6 +22,13 @@ import MessageTooltipPopover from './components/MessageTooltipPopover';
 import { onLayout, scrollTo } from '../../helpers/scroll';
 import { useHardwareBackPress } from '../../hooks/useHardwareBackPress';
 import { FlightSelection } from '../../components/FlightSelection';
+import CreatePostAddButton from './components/CreatePostAddButtons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { palette } from '../../Theme';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import TabButton from './components/TabButton';
+
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const CreatePost = ({ route }) => {
   const presenter = useCreatePostWireframe();
@@ -65,6 +72,26 @@ const CreatePost = ({ route }) => {
     setSelectedPhotos(_photos);
   };
 
+
+  const CreateButtons = [
+    {
+      title: 'Add Media',
+      icon: <MaterialIcons name='perm-media' color={palette.secondary.default} size={24} />,
+      key: 1
+    },
+    {
+      title: 'Share a Flight',
+      icon: <MaterialIcons name='flight-takeoff' color={palette.secondary.default} size={25} />,
+      key: 2,
+      onHandle: presenter?.onAddFlightButtonPressed
+    },
+    {
+      title: 'Add Community',
+      icon: <MaterialCommunityIcons name='handshake' color={palette.secondary.default} size={25} />,
+      key: 3
+    }
+  ]
+
   return (
     <BaseScreen isLoading={presenter?.isLoading}>
       {!!presenter && (
@@ -104,17 +131,73 @@ const CreatePost = ({ route }) => {
             </View>
 
             <View style={styles.separatorView} />
+            {
+              presenter?.selectedFlight ?
+                <FlightSelection
+                  selectedFlight={presenter.selectedFlight}
+                  selectedAircraft={presenter.selectedAircraft}
+                  onAddFlightButtonPressed={presenter.onAddFlightButtonPressed}
+                  onClearFlightPressed={presenter.onClearFlightPressed}
+                />
+                :
+                null
+            }
 
-            <FlightSelection
-              selectedFlight={presenter.selectedFlight}
-              selectedAircraft={presenter.selectedAircraft}
-              onAddFlightButtonPressed={presenter.onAddFlightButtonPressed}
-              onClearFlightPressed={presenter.onClearFlightPressed}
-            />
 
             <View style={styles.separatorView} />
 
-            <View style={styles.sectionBackground}>
+            <View style={{
+              backgroundColor: 'white',
+              paddingVertical: 10,
+              paddingTop: 20
+            }}>
+              <View style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-evenly',
+
+              }}>
+                {
+                  CreateButtons?.map(item => (
+                    <CreatePostAddButton
+                      key={item?.key}
+                      title={item?.title}
+                      icon={item?.icon}
+                      onHandle={item?.onHandle}
+                    />
+                  ))
+                }
+
+
+
+
+              </View>
+              <View style={{
+                marginTop: 10
+              }}>
+                <TabButton
+                  onPress={() => presenter.visibilityInputWasPressed()}
+                  rightIcon={<Entypo name='chevron-right' color='black' size={25} />}
+                  tabTitle={`Who can see this post? (${presenter.selectedVisibility})`}
+                  tabIcon={<MaterialCommunityIcons name='earth' color={palette.secondary.default} size={20} />} />
+                <View
+                  style={{
+                    width: '90%',
+                    alignSelf: 'center',
+                    borderWidth: 0.7,
+                    marginVertical: 10,
+                    borderColor: palette.grayscale.mercury
+                  }}
+                />
+                <TabButton
+                  rightIcon={<Entypo name='chevron-right' color='black' size={25} />
+                  }
+                  tabTitle={'Select the communites related to this post'}
+                  tabIcon={<MaterialIcons name='people' color={palette.secondary.default} size={20} />} />
+              </View>
+            </View>
+
+            {/* <View style={styles.sectionBackground}>
               <HorizontalPadding>
                 <Title text="Photo" style={styles.imagesTitle} />
               </HorizontalPadding>
@@ -137,9 +220,9 @@ const CreatePost = ({ route }) => {
                   showPlaceholder={!presenter.isAnyPhotoSelected}
                 />
               </View>
-            </View>
+            </View> */}
 
-            <View style={styles.separatorView} />
+            {/* <View style={styles.separatorView} />
 
             <View
               onLayout={(event) => onLayout(event, setCommunityTagSectionPositionY)}
@@ -173,7 +256,7 @@ const CreatePost = ({ route }) => {
                   onPress={() => presenter.visibilityInputWasPressed()}
                 />
               </HorizontalPadding>
-            </View>
+            </View> */}
 
             <View style={styles.finalSeparatorView} />
           </KeyboardAwareScrollView>

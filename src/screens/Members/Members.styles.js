@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { fonts, palette } from '../../Theme';
 
-export const styles = StyleSheet.create( {
+export const styles = StyleSheet.create({
 	separatorItems: {
 		marginBottom: 20
 	},
@@ -38,5 +38,48 @@ export const styles = StyleSheet.create( {
 	tabInactive: {
 		...fonts.tabsMedium,
 		color: palette.grayscale.black
+	},
+	headerSearch: {
+		width: '95%',
+		alignSelf: 'center',
+		height: 44,
+		backgroundColor: 'white',
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 1,
+		},
+		shadowOpacity: 0.22,
+		shadowRadius: 2.22,
+
+		elevation: 3,
+		borderRadius: 2,
+		flexDirection: 'row',
+		alignItems: 'center',
+		paddingLeft: 10,
+		marginVertical: 5
+	},
+	headerSearchInput: {
+		flex: 1,
+		paddingLeft: 10,
+		...fonts.bodySmall
+	},
+	searchTypeButton: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderWidth: 1.3,
+		borderRadius: 30,
+		minWidth: 100,
+		marginLeft: 5,
+		paddingVertical: 8,
+	},
+	selectTypesText: {
+		...fonts.title,
+		marginBottom: 12,
+		color: palette.primary.darkCyan
+	},
+	flatListContainer: { right: 5, marginTop: 5, marginBottom: 10 },
+	searchTypeButtonText:{
+		...fonts.bodySmall
 	}
-} );
+});

@@ -5,9 +5,10 @@ import { TextButton } from '../TextButton';
 import { styles } from './ScreenHeader.styles';
 
 const ScreenHeader = ( {
-	testID, title, rightButton
+	testID, title, rightButton,bottomContent
 } ) => (
-	<View testID={testID} style={styles.containerView}>
+	<View>
+		<View testID={testID} style={styles.containerView}>
 		<Text testID="header-text" style={styles.title} numberOfLines={1}>
 			{title}
 		</Text>
@@ -19,6 +20,9 @@ const ScreenHeader = ( {
 				variant="destructive"
 			/>
 		)}
+		
+	</View>
+	{bottomContent}
 	</View>
 );
 

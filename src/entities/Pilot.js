@@ -120,7 +120,7 @@ export default class Pilot {
 			profile_picture_url: this.profilePictureUrl,
 			profile_picture_thumbnail_url: this.profilePictureThumbnailUrl,
 			primary_aircraft_id: this.primaryAircraftId,
-			aircrafts: this.aircrafts.map( ( aircraft ) => aircraft.toJSON() ),
+			aircrafts: this.aircrafts?.map( ( aircraft ) => aircraft.toJSON() ),
 			latest_flights: this.latestFlights?.map( ( postFlight ) => postFlight.toJSON() ),
 			certificates: this.certificates?.map( ( certificate ) => certificate.toJSON() ),
 			ratings: this.ratings?.map( ( rating ) => rating.toJSON() ),

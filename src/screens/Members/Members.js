@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import PropTypes from 'prop-types';
 import { FlatList, Pressable, View } from 'react-native';
@@ -16,11 +16,20 @@ import { scrollToTop } from '../../helpers/scroll';
 import {
 	CometChatConversationListWithMessages
 } from '../../cometchat-pro-react-native-ui-kit/CometChatWorkspace';
+import WilcoMembersHeaderBottom from './Components/WilcoMembersHeaderBottom';
 
 const Members = ( { testID } ) => {
 	const presenter = useMembersWireframe();
+	const [filterPilotData,setFilterPilotData] = useState(presenter?.pilotsPresenters);
+	
 	const ref = React.useRef( null );
 	useScrollToTop( ref );
+
+	useEffect(() => {
+		if(presenter && presenter?.pilotsPresenters) {
+			setFilterPilotData(presenter?.pilotsPresenters);
+		}
+	},[presenter?.pilotsPresenters]);
 
 	// eslint-disable-next-line react/prop-types
 	const _renderMember = ( { item: pilotInfoPresenter } ) => (
@@ -56,13 +65,17 @@ const Members = ( { testID } ) => {
 
 	const _onMoveShouldSetResponder = ( e ) => e.stopPropagation();
 
+	const _onRecieveSearchedData = (data) => setFilterPilotData(data);
+
 	return (
 		<BaseScreen testID={testID} edgeTop>
 			<HorizontalPadding>
 				<Pressable style={styles.screenHeader} onPress={_onPressTitle}>
 					<ScreenHeader
 						testID="title-header"
-						title="Members"
+						title="Search WILCO members"
+						bottomContent={
+						<WilcoMembersHeaderBottom sendSearchDataFunc={_onRecieveSearchedData} pilots={presenter?.pilotsPresenters}/>}
 					/>
 				</Pressable>
 			</HorizontalPadding>
@@ -108,11 +121,11 @@ const Members = ( { testID } ) => {
 					<FlatList
 						ref={ref}
 						testID="members-flatList"
-						data={( presenter.showMembers ) ? presenter.pilotsPresenters : null}
+						data={( presenter.showMembers ) ? filterPilotData: null}
 						renderItem={_renderMember}
 						keyExtractor={( pilotInfoPresenter ) => pilotInfoPresenter.pilot.id}
 						onRefresh={_onRefresh}
-						onEndReached={_handleLoadMore}
+						// onEndReached={_handleLoadMore}
 						onEndReachedThreshold={0.5}
 						refreshing={presenter.isRefreshing}
 						ListHeaderComponent={<View style={styles.flatListHeader} />}

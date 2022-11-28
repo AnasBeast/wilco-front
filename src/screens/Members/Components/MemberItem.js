@@ -17,7 +17,7 @@ const MemberItem = ( { pilotInfoPresenter } ) => (
 			pilotOnPress={pilotInfoPresenter.pilotWasPressed}
 			rightAction={{
 				imageSource: !pilotInfoPresenter.isCurrentPilot && chatNewMessage,
-				onPress: pilotInfoPresenter.onSendMessagePress
+				onPress: pilotInfoPresenter.pilotWasPressed
 			}}
 		/>
 	</View>

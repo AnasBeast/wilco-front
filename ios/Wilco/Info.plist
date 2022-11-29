@@ -49,7 +49,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>This app requires access to your location to check nearest airports.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app requires access to the photo library to allow you to attach images in your posts and edit your profile picture.</string>
 	<key>UIAppFonts</key>

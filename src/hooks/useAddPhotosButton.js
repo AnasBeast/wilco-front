@@ -8,7 +8,7 @@ export const useAddPhotosButton = (onPhotosSelected, maxPhotosAllowed, selectedP
   const _getBase64 = async (images) => {
     await Promise.all(
       images.map(async (image) => {
-        const base64 = await RNSF.readFile(image.path, 'base64');
+        const base64 = await RNSF.readFile(image.path, 'base64').catch((e) => console.log('error ', e));
         image.base64 = base64;
       })
     );
@@ -35,15 +35,15 @@ export const useAddPhotosButton = (onPhotosSelected, maxPhotosAllowed, selectedP
       const multipleImagePickerOptions = {
         selectedColor: palette.primary.default,
         maxSelectedAssets: maxPhotosAllowed,
-        mediaType: 'image',
+        mediaType: 'all',
         selectedAssets: selectedPhotos,
         usedCameraButton: false,
         maximumMessageTitle: 'Limit Reached',
       };
 
-      let images = await MultipleImagePicker.openPicker(multipleImagePickerOptions);
-      await _getBase64(images);
-      _onImagesSelected(images);
+      let assets = await MultipleImagePicker.openPicker(multipleImagePickerOptions);
+      await _getBase64(assets);
+      _onImagesSelected(assets);
     } catch {}
   };
 

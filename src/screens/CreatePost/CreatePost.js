@@ -29,6 +29,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import TabButton from './components/TabButton';
 
 import Entypo from 'react-native-vector-icons/Entypo';
+import { useAddPhotosButton } from '../../hooks/useAddPhotosButton';
 
 const CreatePost = ({ route }) => {
   const presenter = useCreatePostWireframe();
@@ -77,7 +78,8 @@ const CreatePost = ({ route }) => {
     {
       title: 'Add Media',
       icon: <MaterialIcons name='perm-media' color={palette.secondary.default} size={24} />,
-      key: 1
+      key: 1,
+      onHandle:useAddPhotosButton(_photosWereSelected,20,selectedPhotos)
     },
     {
       title: 'Share a Flight',
@@ -86,9 +88,10 @@ const CreatePost = ({ route }) => {
       onHandle: presenter?.onAddFlightButtonPressed
     },
     {
-      title: 'Add Community',
+      title: 'Add Contributor',
       icon: <MaterialCommunityIcons name='handshake' color={palette.secondary.default} size={25} />,
-      key: 3
+      key: 3,
+      onHandle:presenter?.onAddContributorsPressed
     }
   ]
 
@@ -190,6 +193,7 @@ const CreatePost = ({ route }) => {
                   }}
                 />
                 <TabButton
+                  onPress={presenter.onSelectCommunitiesPresses}
                   rightIcon={<Entypo name='chevron-right' color='black' size={25} />
                   }
                   tabTitle={'Select the communites related to this post'}
@@ -197,10 +201,10 @@ const CreatePost = ({ route }) => {
               </View>
             </View>
 
-            {/* <View style={styles.sectionBackground}>
-              <HorizontalPadding>
+            <View style={styles.sectionBackground}>
+            {/* <HorizontalPadding>
                 <Title text="Photo" style={styles.imagesTitle} />
-              </HorizontalPadding>
+              </HorizontalPadding> */}
 
               {presenter.isAnyPhotoSelected && (
                 <ImageCarousel
@@ -210,7 +214,7 @@ const CreatePost = ({ route }) => {
                 />
               )}
 
-              <View style={styles.postBarContainer}>
+              {/* <View style={styles.postBarContainer}>
                 <AddPhotosButton
                   testID="add-photos-button"
                   title={presenter.addPhotosButtonTitle}
@@ -219,8 +223,8 @@ const CreatePost = ({ route }) => {
                   selectedPhotos={selectedPhotos}
                   showPlaceholder={!presenter.isAnyPhotoSelected}
                 />
-              </View>
-            </View> */}
+              </View>  */}
+            </View>
 
             {/* <View style={styles.separatorView} />
 

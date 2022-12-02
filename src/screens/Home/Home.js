@@ -16,6 +16,8 @@ import MyFeedPlaceholder from './Components/MyFeedPlaceholder';
 import { scrollToTop } from '../../helpers/scroll';
 import Filters from './Components/Filters';
 import { palette } from '../../Theme';
+import navigation from '../../navigation/RootNavigation';
+import AUTHENTICATED_ROUTES from '../../navigation/AuthenticatedRoutes';
 
 const Home = ({ testID, route }) => {
   const initialIndex = route.params?.initialIndex;
@@ -102,6 +104,7 @@ const Home = ({ testID, route }) => {
     <BaseScreen testID={testID} edgeTop>
       <FilterModal presenter={presenter} />
       <HomeHeader
+        onSearchPressed={() => navigation.navigate(AUTHENTICATED_ROUTES.Search.name)}
         ref={{ allPostListRef, myFeedPostListRef }}
         isHomePreferencesTooltipWasSeen={presenter.isHomePreferencesTooltipWasSeen}
         onTooltipButtonPressed={presenter.onTooltipButtonPressed}

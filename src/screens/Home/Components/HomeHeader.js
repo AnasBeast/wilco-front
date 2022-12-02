@@ -18,6 +18,7 @@ const HomeHeader = forwardRef(
       onPreferencesButtonPressed,
       onTooltipClosed,
       setIsFilterModalVisible,
+      onSearchPressed
     },
     ref
   ) => {
@@ -53,7 +54,7 @@ const HomeHeader = forwardRef(
             </Pressable>
           </View>
           <View style={styles.headerRightContainer}>
-            <Pressable onPress={_onFilterPressed} hitSlop={HIT_SLOP}>
+            <Pressable onPress={onSearchPressed} hitSlop={HIT_SLOP}>
               <Image testID="filter-image" style={[styles.rightLogo, styles.filterLogo]} source={search} />
             </Pressable>
             <Pressable onPress={onPreferencesButtonPressed} hitSlop={HIT_SLOP}>

@@ -17,7 +17,11 @@ const AUTHENTICATED_ROUTES = {
 	confirmationDeleteAccount: { name: 'ConfirmationDeleteAccount' },
 	preferences: { name: 'Preferences' },
 	reportUser: { name: 'ReportUser' },
-	cometChatMessages: { name: 'CometChatMessages' }
+	cometChatMessages: { name: 'CometChatMessages' },
+	Search:{name:'SearchScreen'},
+	setPreferences:{name:'setPreferences'},
+	Communities:{name:'Communities'},
+	Contributors:{name:'Contributors'}
 };
 
 export default AUTHENTICATED_ROUTES;

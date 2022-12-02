@@ -21,6 +21,10 @@ import AddFlight from '../screens/AddFlight/AddFlight';
 import Preferences from '../screens/Preferences/Preferences';
 import ReportUserScreen from '../screens/ReportUser/ReportUser';
 import ChatConversationScreen from '../screens/ChatConversation/ChatConversationScreen';
+import SearchScreen from '../screens/SearchScreen/SearchScreen';
+import SetPreferences from '../screens/SetPreferences/setPreferences';
+import CommunitiesScreen from '../screens/CreatePost/Communities/communities.screen';
+import ContributionsScreen from '../screens/CreatePost/Contributions/Contributions.screen';
 
 const AuthenticatedStack = createStackNavigator();
 
@@ -103,6 +107,14 @@ const MainStackScreen = () => (
 			name={AUTHENTICATED_ROUTES.pilotProfile.name}
 			component={PilotProfile}
 		/>
+		<AuthenticatedStack.Screen
+			name={AUTHENTICATED_ROUTES.Search.name}
+			component={SearchScreen}
+		/>
+		<AuthenticatedStack.Screen
+			name={AUTHENTICATED_ROUTES.setPreferences.name}
+			component={SetPreferences}
+		/>
 	</AuthenticatedStack.Navigator>
 );
 
@@ -135,6 +147,14 @@ const AuthenticatedNavigator = () => {
 			<AuthenticatedStack.Screen
 				name={AUTHENTICATED_ROUTES.postTextStack.name}
 				component={CreatePostStackScreen}
+			/>
+			<AuthenticatedStack.Screen
+				name={AUTHENTICATED_ROUTES.Communities.name}
+				component={CommunitiesScreen}
+			/>
+			<AuthenticatedStack.Screen
+				name={AUTHENTICATED_ROUTES.Contributors.name}
+				component={ContributionsScreen}
 			/>
 			<AuthenticatedStack.Screen
 				name={AUTHENTICATED_ROUTES.editPostStack.name}

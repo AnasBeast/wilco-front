@@ -77,6 +77,18 @@ export default class CreatePostPresenter {
 		} );
 	}
 
+	onSelectCommunitiesPresses = () => {
+		this.navigation.navigate(
+			AUTHENTICATED_ROUTES.Communities.name
+		)
+	}
+
+	onAddContributorsPressed = () => {
+		this.navigation.navigate(
+			AUTHENTICATED_ROUTES.Contributors.name
+		)
+	}
+
 	get placeholderCommunityInputText() {
 		return 'Select the communities related to this post';
 	}

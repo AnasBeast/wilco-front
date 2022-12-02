@@ -121,7 +121,7 @@ export default class HomePresenter {
 	}
 
 	onPreferencesButtonPressed = () => {
-		this.navigation.navigate( AUTHENTICATED_ROUTES.preferences.name );
+		this.navigation.navigate( AUTHENTICATED_ROUTES.setPreferences.name );
 	};
 
 	onTooltipButtonPressed = () => {

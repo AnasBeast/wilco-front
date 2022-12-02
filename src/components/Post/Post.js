@@ -27,6 +27,7 @@ const PostComponent = ({
   showBackground,
   onHashtagPress,
 }) => {
+  console.log('line 30',postPresenter)
   const [isVisibleComments, setVisibleComments] = useState(false);
   const handelCommentPress = () => setVisibleComments(!isVisibleComments);
 

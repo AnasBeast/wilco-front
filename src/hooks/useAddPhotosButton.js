@@ -44,7 +44,9 @@ export const useAddPhotosButton = (onPhotosSelected, maxPhotosAllowed, selectedP
       let images = await MultipleImagePicker.openPicker(multipleImagePickerOptions);
       await _getBase64(images);
       _onImagesSelected(images);
-    } catch {}
+    } catch (e) {
+      alert(JSON.stringify(e))
+    }
   };
 
   const handleGalleryPermission = useGalleryPermissionHandler(_openImagePicker);

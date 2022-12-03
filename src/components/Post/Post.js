@@ -27,11 +27,8 @@ const PostComponent = ({
   showBackground,
   onHashtagPress,
 }) => {
-  console.log('line 30',postPresenter)
   const [isVisibleComments, setVisibleComments] = useState(false);
   const handelCommentPress = () => setVisibleComments(!isVisibleComments);
-
-  console.log('QQQ postPresenter 1 ', postPresenter);
 
   const privacy = (
     <Image
@@ -83,7 +80,7 @@ const PostComponent = ({
 
         <Airports airports={postPresenter.airports} />
 
-        {!!postPresenter.title && ( 
+        {!!postPresenter.title && (
           <Text testID="title-text" style={styles.title} onPress={contentWasPressed}>
             {postPresenter.title}
           </Text>

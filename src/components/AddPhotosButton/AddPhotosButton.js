@@ -6,52 +6,32 @@ import { photoVideo } from '../../assets/icons';
 import PlaceholderButton from '../PlaceholderButton/PlaceholderButton';
 import { useAddPhotosButton } from '../../hooks/useAddPhotosButton';
 
-const AddPhotosButton = ( {
-	testID, title, onPhotosSelected, selectedPhotos, maxPhotosAllowed, showPlaceholder
-} ) => {
-	const handleGalleryPermission = useAddPhotosButton(
-		onPhotosSelected,
-		maxPhotosAllowed,
-		selectedPhotos
-	);
+const AddPhotosButton = ({ testID, title, onPhotosSelected, selectedPhotos, maxPhotosAllowed, showPlaceholder }) => {
+  const handleGalleryPermission = useAddPhotosButton(onPhotosSelected, maxPhotosAllowed, selectedPhotos);
 
-	return (
-		showPlaceholder
-			? (
-				<PlaceholderButton
-					testID={testID}
-					imageSource={photoVideo}
-					onPress={handleGalleryPermission}
-					title="Add photos"
-				/>
-			)
-			: (
-				<TertiaryButton
-					testID={testID}
-					title={title}
-					size="small"
-					onPress={handleGalleryPermission}
-				/>
-			)
-	);
+  return showPlaceholder ? (
+    <PlaceholderButton testID={testID} imageSource={photoVideo} onPress={handleGalleryPermission} title="Add photos" />
+  ) : title ? (
+    <TertiaryButton testID={testID} title={title} size="small" onPress={handleGalleryPermission} />
+  ) : null;
 };
 
 AddPhotosButton.propTypes = {
-	testID: PropTypes.string,
-	title: PropTypes.string,
-	onPhotosSelected: PropTypes.func,
-	selectedPhotos: PropTypes.any,
-	maxPhotosAllowed: PropTypes.number,
-	showPlaceholder: PropTypes.bool
+  testID: PropTypes.string,
+  title: PropTypes.string,
+  onPhotosSelected: PropTypes.func,
+  selectedPhotos: PropTypes.any,
+  maxPhotosAllowed: PropTypes.number,
+  showPlaceholder: PropTypes.bool,
 };
 
 AddPhotosButton.defaultProps = {
-	testID: 'addPhotosButton-component',
-	title: 'Add photo/s',
-	onPhotosSelected: () => {},
-	selectedPhotos: [],
-	maxPhotosAllowed: 10,
-	showPlaceholder: false
+  testID: 'addPhotosButton-component',
+  title: 'Add photo/s',
+  onPhotosSelected: () => {},
+  selectedPhotos: [],
+  maxPhotosAllowed: 10,
+  showPlaceholder: false,
 };
 
-export default observer( AddPhotosButton );
+export default observer(AddPhotosButton);

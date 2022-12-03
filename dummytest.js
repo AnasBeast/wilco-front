@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useRef, useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { FlatList, View } from 'react-native';
@@ -74,29 +75,28 @@ const CreatePost = ({ route }) => {
     presenter.photosWereSelected(_photos);
     setSelectedPhotos(_photos);
   };
-  const handleGalleryPermission = useAddPhotosButton(_photosWereSelected, 10, selectedPhotos);
 
+  const handleGalleryPermission = useAddPhotosButton(_photosWereSelected, 10, selectedPhotos);
 
   const CreateButtons = [
     {
       title: 'Add Media',
-      icon: <MaterialIcons name='perm-media' color={palette.secondary.default} size={24} />,
+      icon: <MaterialIcons name="perm-media" color={palette.secondary.default} size={24} />,
       key: 1,
-      onHandle:handleGalleryPermission
+      onHandle: handleGalleryPermission,
     },
     {
       title: 'Share a Flight',
-      icon: <MaterialIcons name='flight-takeoff' color={palette.secondary.default} size={25} />,
+      icon: <MaterialIcons name="flight-takeoff" color={palette.secondary.default} size={25} />,
       key: 2,
-      onHandle: presenter?.onAddFlightButtonPressed
+      onHandle: presenter?.onAddFlightButtonPressed,
     },
     {
-      title: 'Add Contributor',
-      icon: <MaterialCommunityIcons name='handshake' color={palette.secondary.default} size={25} />,
+      title: 'Add Community',
+      icon: <MaterialCommunityIcons name="handshake" color={palette.secondary.default} size={25} />,
       key: 3,
-      onHandle:presenter?.onAddContributorsPressed
-    }
-  ]
+    },
+  ];
 
   return (
     <BaseScreen isLoading={presenter?.isLoading}>
@@ -137,134 +137,73 @@ const CreatePost = ({ route }) => {
             </View>
 
             <View style={styles.separatorView} />
-            {
-              presenter?.selectedFlight ?
-                <FlightSelection
-                  selectedFlight={presenter.selectedFlight}
-                  selectedAircraft={presenter.selectedAircraft}
-                  onAddFlightButtonPressed={presenter.onAddFlightButtonPressed}
-                  onClearFlightPressed={presenter.onClearFlightPressed}
-                />
-                :
-                null
-            }
-
+            {presenter?.selectedFlight ? (
+              <FlightSelection
+                selectedFlight={presenter.selectedFlight}
+                selectedAircraft={presenter.selectedAircraft}
+                onAddFlightButtonPressed={presenter.onAddFlightButtonPressed}
+                onClearFlightPressed={presenter.onClearFlightPressed}
+              />
+            ) : null}
 
             <View style={styles.separatorView} />
+
             <View style={styles.sectionBackground}>
               {selectedPhotos.length > 0 && (
                 <ImageCarousel testID="photo-carousel" previewSources={selectedPhotos} removeImage={_removeImage} />
               )}
             </View>
-            <View style={{
-              backgroundColor: 'white',
-              paddingVertical: 10,
-              paddingTop: 20
-            }}>
-              <View style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
 
-              }}>
-                {
-                  CreateButtons?.map(item => (
-                    <CreatePostAddButton
-                      key={item?.key}
-                      title={item?.title}
-                      icon={item?.icon}
-                      onHandle={item?.onHandle}
-                    />
-                  ))
-                }
-
-
-
-
+            <View
+              style={{
+                backgroundColor: 'white',
+                paddingVertical: 10,
+                paddingTop: 20,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-evenly',
+                }}
+              >
+                {CreateButtons?.map((item) => (
+                  <CreatePostAddButton
+                    key={item?.key}
+                    title={item?.title}
+                    icon={item?.icon}
+                    onHandle={item?.onHandle}
+                  />
+                ))}
               </View>
-              <View style={{
-                marginTop: 10
-              }}>
+              <View
+                style={{
+                  marginTop: 10,
+                }}
+              >
                 <TabButton
                   onPress={() => presenter.visibilityInputWasPressed()}
-                  rightIcon={<Entypo name='chevron-right' color='black' size={25} />}
+                  rightIcon={<Entypo name="chevron-right" color="black" size={25} />}
                   tabTitle={`Who can see this post? (${presenter.selectedVisibility})`}
-                  tabIcon={<MaterialCommunityIcons name='earth' color={palette.secondary.default} size={20} />} />
+                  tabIcon={<MaterialCommunityIcons name="earth" color={palette.secondary.default} size={20} />}
+                />
                 <View
                   style={{
                     width: '90%',
                     alignSelf: 'center',
                     borderWidth: 0.7,
                     marginVertical: 10,
-                    borderColor: palette.grayscale.mercury
+                    borderColor: palette.grayscale.mercury,
                   }}
                 />
                 <TabButton
-                  onPress={presenter.onSelectCommunitiesPressed}
-                  rightIcon={<Entypo name='chevron-right' color='black' size={25} />
-                  }
+                  rightIcon={<Entypo name="chevron-right" color="black" size={25} />}
                   tabTitle={'Select the communites related to this post'}
-                  tabIcon={<MaterialIcons name='people' color={palette.secondary.default} size={20} />} />
+                  tabIcon={<MaterialIcons name="people" color={palette.secondary.default} size={20} />}
+                />
               </View>
             </View>
-
-            <View style={styles.sectionBackground}>
-            {/* <HorizontalPadding>
-                <Title text="Photo" style={styles.imagesTitle} />
-              </HorizontalPadding> */}
-
-              {presenter.isAnyPhotoSelected && (
-                <ImageCarousel
-                  testID="photo-carousel"
-                  previewSources={presenter.photoSources}
-                  removeImage={_removeImage}
-                />
-              )}
-
-              {/* <View style={styles.postBarContainer}>
-                <AddPhotosButton
-                  testID="add-photos-button"
-                  title={presenter.addPhotosButtonTitle}
-                  onPhotosSelected={_photosWereSelected}
-                  maxPhotosAllowed={presenter.maxPhotosAllowed}
-                  selectedPhotos={selectedPhotos}
-                  showPlaceholder={!presenter.isAnyPhotoSelected}
-                />
-              </View>  */}
-            </View>
-
-            {/* <View style={styles.separatorView} />
-            <View
-              onLayout={(event) => onLayout(event, setCommunityTagSectionPositionY)}
-              style={styles.sectionBackground}
-            >
-              <HorizontalPadding style={styles.communityTagSection}>
-                <View style={styles.separatorViewCommunity} />
-                <CommunityInput
-                  label={presenter.communityTagsPresenter.titleText}
-                  onSubmit={presenter.communityTagsPresenter.addNewTag}
-                  placeholder={presenter.communityTagsPresenter.placeholderText}
-                  helperText={presenter.communityTagsPresenter.helperText}
-                  options={presenter.communityTagsPresenter.tagsFromStore}
-                  isLoading={presenter.communityTagsPresenter.isLoading}
-                  hasError={presenter.communityTagsPresenter.hasError}
-                  scrollTo={() => scrollTo({ ref, positionY: communityTagSectionPositionY })}
-                />
-                <Tags
-                  items={presenter.communityTagsPresenter.tags}
-                  onRemove={presenter.communityTagsPresenter.removeTag}
-                />
-              </HorizontalPadding>
-              <View style={[styles.separatorView, styles.container]} />
-              <HorizontalPadding style={styles.visibilityContainer}>
-                <TouchableInput
-                  testID="visibility-input"
-                  label={presenter.form.$(VISIBILITY).label}
-                  value={presenter.selectedVisibility}
-                  onPress={() => presenter.visibilityInputWasPressed()}
-                />
-              </HorizontalPadding>
-            </View> */}
 
             <View style={styles.finalSeparatorView} />
           </KeyboardAwareScrollView>

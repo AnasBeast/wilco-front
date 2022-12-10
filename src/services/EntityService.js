@@ -11,7 +11,7 @@ export default class EntityService {
 		this.api = api;
 		this.buildEntity = buildEntity;
 		this.basePath = basePath;
-		this.apiVersion = '1';
+		this.apiVersion = '/api/v1';
 	}
 
 	async delete( entityId ) {

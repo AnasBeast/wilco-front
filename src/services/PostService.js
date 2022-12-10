@@ -10,32 +10,32 @@ export default class PostService {
 	}
 
 	createPost = async ( postParams ) => {
-		const createPostResponse = await this.api.post( '1/posts', {
+		const createPostResponse = await this.api.post( '/api/v1/posts', {
 			post: this._buildPostCreationBody( postParams )
 		} );
 		return this.buildItem( createPostResponse );
 	}
 
 	async patch( postId, postParams ) {
-		const postResponse = await this.api.patch( `1/posts/${postId}`, {
+		const postResponse = await this.api.patch( `/api/v1/posts/${postId}`, {
 			post: this._buildPostPatchBody( postParams )
 		} );
 		return this.buildItem( postResponse );
 	}
 
 	async delete( postId ) {
-		const postsResponse = await this.api.delete( `1/posts/${postId}` );
+		const postsResponse = await this.api.delete( `/api/v1/posts/${postId}` );
 		return this.buildItem( postsResponse );
 	}
 
 	async fetch( postId ) {
-		const postsResponse = await this.api.get( `1/posts/${postId}` );
+		const postsResponse = await this.api.get( `/api/v1/posts/${postId}` );
 		return this.buildItem( postsResponse );
 	}
 
 	async fetchAll( pagination, params = {} ) {
 		const queryParams = this._getQueryParam( pagination, params );
-		const postsResponse = await this.api.get( `1/posts?${queryParams}` );
+		const postsResponse = await this.api.get( `/api/v1/posts?${queryParams}` );
 		return {
 			entities: postsResponse.map( ( entityJSON ) => this.buildItem( entityJSON ) ),
 			pagination: Pagination.fromJSON(
@@ -64,17 +64,17 @@ export default class PostService {
 	}
 
 	async likePost( postId ) {
-		const likeResponse = await this.api.post( `1/posts/${postId}/like` );
+		const likeResponse = await this.api.post( `/api/v1/posts/${postId}/like` );
 		return this.buildItem( likeResponse );
 	}
 
 	async unlikePost( postId ) {
-		const unlikeResponse = await this.api.post( `1/posts/${postId}/unlike` );
+		const unlikeResponse = await this.api.post( `/api/v1/posts/${postId}/unlike` );
 		return this.buildItem( unlikeResponse );
 	}
 
 	async report( postId ) {
-		await this.api.post( `1/posts/${postId}/reports` );
+		await this.api.post( `/api/v1/posts/${postId}/reports` );
 	}
 
 	_buildPostCreationBody( {

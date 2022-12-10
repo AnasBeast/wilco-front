@@ -4,6 +4,7 @@ import AvailabilityError from '../errors/AvailabilityError';
 import NetworkError from '../errors/NetworkError';
 import InputError from '../errors/InputError';
 import ApiResponseDeserializer from './ApiResponseDeserializer';
+import Config from 'react-native-config';
 
 export default class Api {
 	constructor( {
@@ -52,7 +53,7 @@ export default class Api {
 	logIn = async ( assertion, config ) => {
 		const oauthToken = await this.makeRequest(
 			() => this.client.post(
-				'/oauth/token', {
+				'/api/v1/auth/login', {
 					assertion, grant_type: 'assertion'
 				},
 				config
@@ -73,7 +74,7 @@ export default class Api {
 	};
 
 	_deleteAccount = async () => {
-		await this.delete( '/1/pilots/me' );
+		await this.delete( '/pilots/me' );
 	}
 
 	_revokeToken = async () => {

@@ -21,7 +21,7 @@ describe( 'AirportService', () => {
 		const params = {
 			preferredAirports: [ 'EZE', 'MAD' ]
 		};
-		const expectedUrl = '1/pilots/me/airports';
+		const expectedUrl = '/pilots/me/airports';
 		const expectedParams = {
 			preferred_airport_names: [ 'EZE', 'MAD' ]
 		};

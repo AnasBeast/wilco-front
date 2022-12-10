@@ -79,7 +79,7 @@ export default class HomePostListPresenter {
 	}
 
 	get placeholderText() {
-		return ( this.pilot?.airports.length > 0
+		return ( this.pilot?.airports?.length > 0
 			? "For now, we didn't find any post that matches your preferences."
 			: 'Posts from your preferred airports will appear here. Please set them up via your preferences.' );
 	}

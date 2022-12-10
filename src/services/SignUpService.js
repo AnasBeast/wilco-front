@@ -23,7 +23,7 @@ export default class SignUpService {
 	async signUp( {
 		firebaseIdToken, firstName, lastName, rolesIDs, customRoles
 	} ) {
-		await this.api.post( '1/pilots', this._signUpBody( {
+		await this.api.post( '/pilots', this._signUpBody( {
 			firebaseIdToken, firstName, lastName, rolesIDs, customRoles
 		} ) );
 	}

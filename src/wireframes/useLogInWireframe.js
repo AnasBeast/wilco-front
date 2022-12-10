@@ -22,6 +22,7 @@ const useLogInWireframe = () => {
 
 	useEffect( () => {
 		const { authenticationStore } = rootStore;
+
 		const authResponseDeserializerKlass = OAuthResponseDeserializer;
 		const apiResponseDeserializerKlass = ApiResponseDeserializer;
 		const keyboard = Keyboard;
@@ -30,6 +31,7 @@ const useLogInWireframe = () => {
 			authenticationStore,
 			responseDeserializerKlass: authResponseDeserializerKlass
 		} );
+		
 		const api = new Api( {
 			authenticationStore,
 			responseDeserializerKlass: apiResponseDeserializerKlass

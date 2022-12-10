@@ -11,7 +11,7 @@ export default class PilotBuilder {
 
 	build = ( pilotJson ) => {
 		const pilot = Pilot.fromJSON( pilotJson );
-		pilot.aircrafts = pilot.aircrafts.map( ( aircraft ) => this.getStoredAircraft( aircraft ) );
+		pilot.aircrafts = pilot.aircrafts ? pilot.aircrafts.map( ( aircraft ) => this.getStoredAircraft( aircraft ) ) : [];
 		this._setStoredAircraftToLatestFlights( pilot );
 		return pilot;
 	}
